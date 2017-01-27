@@ -1,8 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+<head>
+  <link rel="stylesheet" href="/css/tables.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+</head>
+
+
+<body ng-app="myApp">
+  <div ng-controller="myCtrl">
+
+    <table>
+      <tr>
+        <th>Material</th>
+        <th>Price Per Unit</th>
+        <th>Units</th>
+        <th>Material Total</th>
+      </tr>
+      <tr ng-repeat="x in ores">
+        <td>{{ x.Name }}</td>
+        <td>{{ x.Price }}</td>
+        <td><input type="number" ng-model="units[x.name]" min=0 value=0 /></td>
+        <td>{{ x.Price * units[x.name}}</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <script src="app/myApp.js"></script>
+  <script src="app/myControl.js"></script>
 </body>
+
 </html>
