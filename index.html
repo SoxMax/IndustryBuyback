@@ -19,13 +19,13 @@
       </tr>
       <tr ng-repeat="x in ores">
         <td>{{ x.name }}</td>
-        <td>{{ x.price }}</td>
+        <td>{{ x.price | currency:"" }}</td>
         <td><input type="number" ng-model="units[x.name]" min=0 value=0 /></td>
-        <td>{{ x.price * units[x.name] }}</td>
+        <td>{{ x.price * units[x.name] | currency:"" }}</td>
       </tr>
       <tr>
         <td colspan=2>Total</td>
-        <td colspan=2>{{ totalPrice() }}</td>
+        <td colspan=2>{{ totalPrice() | currency:"" }}</td>
       </tr>
     </table>
 
