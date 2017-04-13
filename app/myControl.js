@@ -1,8 +1,9 @@
 /*global app gapi*/
 
-function IndustryMaterial(name, price) {
+function IndustryMaterial(name, type, price) {
     return {
         name: name,
+        type: type,
         price: price
     }
 }
@@ -17,12 +18,12 @@ app.controller("myCtrl", function($scope) {
         }).then(function() {
             gapi.client.sheets.spreadsheets.values.get({
                 spreadsheetId: '1chAdg92S0KEXY9zlKDwWI5ft2w8ygJBDSgWk-JxUrpw',
-                range: 'Materials!A2:B',
+                range: 'Materials!A2:C',
                 valueRenderOption: 'UNFORMATTED_VALUE'
             }).then(function(response) {
                 var materials = [];
                 for (const row of response.result.values) {
-                    materials.push(IndustryMaterial(row[0], row[1]));
+                    materials.push(IndustryMaterial(row[1], row[0], row[2]));
                 }
                 $scope.ores = materials;
                 $scope.ores.forEach(function(ore) {
