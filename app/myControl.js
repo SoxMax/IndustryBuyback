@@ -23,7 +23,9 @@ app.controller("myCtrl", function($scope) {
             }).then(function(response) {
                 var materials = [];
                 for (const row of response.result.values) {
-                    materials.push(IndustryMaterial(row[1], row[0], row[2]));
+                    const material = IndustryMaterial(row[1], row[0], row[2]);
+                    if(material.price > 0)
+                        materials.push(material);
                 }
                 $scope.ores = materials;
                 $scope.ores.forEach(function(ore) {
